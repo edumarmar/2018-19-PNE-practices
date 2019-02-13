@@ -19,10 +19,11 @@ while True:
     s1 = Seq(sequence)
     compl=(s1.complement())
     rev=(s1.reverse())
+    data= '\nThe complementary sequence is: {0}\nThe reverse sequence is {1}'.format(compl, rev)
+
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((IP, PORT))
-    s.send(str.encode(compl))
-    s.send(str.encode(rev))
+    s.send(str.encode(data))
     s.close()
 
 msg= s.recv(2048).decode('utf-8')
