@@ -14,7 +14,7 @@ def count_a(seq):
 s= input('Enter the sequence: ')
 s=s.upper()
 na = count_a(s)
-print("The are {} As in the sequence".format(na))
+print("The are {} As in the sequence ".format(na))
 
 # Calculate the total length
 tl = len(s)

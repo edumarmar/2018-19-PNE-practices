@@ -19,4 +19,4 @@ str2 = s2.strbases
 
 print("Sequence 1: {}".format(str1))
 print("Sequence 2: {}".format(str2))
-print("Testing the sequence objects")
+print("Testing the sequence objects ")

@@ -1,5 +1,5 @@
 def count_bases(seq):
-    """Counting the number of As in the string"""
+    """Counting the number of As in the string """
 
     a = 0
     c=0

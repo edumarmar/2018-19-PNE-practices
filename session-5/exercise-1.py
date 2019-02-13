@@ -52,7 +52,7 @@ def main(s):
     print('Percentage: ', stats[2])
 
     print('Base T')
-    print('Counter: ', count['T'])
+    print('Counter:  ', count['T'])
     print('Percentage: ', stats[3])
 
 
