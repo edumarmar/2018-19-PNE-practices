@@ -1,7 +1,7 @@
 def count_bases(seq):
     """Counting the number of As in the string"""
 
-    a = 0
+    a=0
     c=0
     g=0
     t=0
@@ -26,7 +26,7 @@ def count_bases(seq):
 
 def percentages(seq):
     # Calculate the total length
-    tl = len(s)
+    tl = len(seq)
     a, c, g, t = seq.count('A'), seq.count('C'), seq.count('G'), seq.count('T')
     variables = [a, c, g, t]
     astats, cstats, gstats, tstats = 0, 0, 0, 0
@@ -36,27 +36,29 @@ def percentages(seq):
     return stats
 
 # Main program
-def main(s):
-    count= count_bases(s)
-    stats= percentages(s)
-    print('Base A')
-    print('Counter: ', count['A'])
-    print('Percentage: ', stats[0])
+def main(list):
+    for seq in list:
+        count= count_bases(seq)
+        stats= percentages(seq)
+        print('Base A')
+        print('Counter: ', count['A'])
+        print('Percentage: ', stats[0])
 
-    print('Base C')
-    print('Counter: ', count['C'])
-    print('Percentage: ', stats[1])
+        print('Base C')
+        print('Counter: ', count['C'])
+        print('Percentage: ', stats[1])
 
-    print('Base G')
-    print('Counter: ', count['G'])
-    print('Percentage: ', stats[2])
+        print('Base G')
+        print('Counter: ', count['G'])
+        print('Percentage: ', stats[2])
 
-    print('Base T')
-    print('Counter: ', count['T'])
-    print('Percentage: ', stats[3])
+        print('Base T')
+        print('Counter: ', count['T'])
+        print('Percentage: ', stats[3])
 
 
-s= input('Enter the sequence: ')
-s=s.upper()
-main(s)
+s1= input('Enter the first sequence: ')
+s2= input('Enter the second sequence: ')
+seqs=(s1, s2)
+main(seqs)
 
