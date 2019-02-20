@@ -1,4 +1,5 @@
-# Programming our fist client
+# Client that sends a sequence and retrieves the complement
+# and reversence sequence
 
 import socket
 from seqp2 import Seq

@@ -1,8 +1,10 @@
+# server created by the teacher
+
 import socket
 
 # Configure the Server's IP and PORT
-PORT = 8081
-IP = "212.128.253.102"
+PORT = 8080
+IP = "87.125.123.220"
 MAX_OPEN_REQUESTS = 5
 
 # Counting the number of connections

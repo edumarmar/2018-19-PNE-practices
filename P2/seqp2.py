@@ -1,3 +1,10 @@
+# Class that contains different functions such as finding
+# the length of a seq, the complement, reverse, number of
+# the different bases or the appearence of itself in percentages.
+
+# The class is also placed in this folder so it is easier to import
+#it to the client file.
+
 class Seq:
     """A class for representing sequences"""
 
