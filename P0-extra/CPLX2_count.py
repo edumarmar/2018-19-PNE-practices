@@ -1,3 +1,6 @@
+# Program that opens a file text with a sequence
+# and counts the bases in it
+
 with open('CPLX2.txt', 'r') as f:
     a=0
     c=0
