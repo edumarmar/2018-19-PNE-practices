@@ -1,10 +1,18 @@
+# Class that contains different functions such as finding
+# the length of a seq, the complement, reverse, number of
+# the different bases or the appearence of itself in percentages.
+
 class Seq:
     """A class for representing sequences"""
+
+    # defining the strbases
 
     def __init__(self, strbases):
         # this method is called every time a new object is created
 
         self.strbases = strbases
+
+    # Functions:
 
     def len(self):
         return len(self.strbases)
