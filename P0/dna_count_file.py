@@ -1,7 +1,9 @@
-
-
+# program for counting the bases of sequences located on another file
 
 def dna_count_file():
+
+    # opening text file and convert all sequences into one
+
     with open('dna.csv', 'r') as f:
         sequence=[]
         for row in f:
@@ -11,6 +13,7 @@ def dna_count_file():
         sequence=sequence.lower()
         sequence.replace('\n', '')
 
+    # counting the bases
         num=len(sequence)
 
         a=sequence.count('a')

@@ -1,14 +1,16 @@
-sequence= input('Insert a DNA sequence: ')
+# Program to count the bases of a DNA sequence
 
-def dna_count(sequence):
+seq = input('Insert a DNA sequence: ')
 
-    sequence= sequence.lower()
-    num=len(sequence)
 
-    a=sequence.count('a')
-    c=sequence.count('c')
-    t=sequence.count('t')
-    g=sequence.count('g')
+def dna_count(seq):
+    seq = seq.lower()
+    num = len(seq)
+
+    a = seq.count('a')
+    c = seq.count('c')
+    t = seq.count('t')
+    g = seq.count('g')
 
     print('Total length: ', num)
     print('A:', a)
@@ -18,4 +20,5 @@ def dna_count(sequence):
 
     return
 
-dna_count(sequence)
+
+dna_count(seq)

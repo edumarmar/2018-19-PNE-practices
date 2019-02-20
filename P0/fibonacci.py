@@ -1,3 +1,6 @@
+# Program for printing the first n terms of
+# the fibonacci series
+
 n = int(input('inster the n parameter: '))
 
 def fibonacci(n):

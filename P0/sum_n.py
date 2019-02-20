@@ -1,3 +1,6 @@
+# Program that sums all the numbers from 1
+# to the n parameter introduced by the user
+
 n= int(input('Insert the n parameter '))
 
 count=0
