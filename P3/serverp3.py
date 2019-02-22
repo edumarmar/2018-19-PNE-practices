@@ -2,8 +2,8 @@ import socket
 from Seqp3 import Seq
 
 
-PORT = 9001
-IP = '212.128.253.108'
+PORT = 9000
+IP = '212.128.253.105'
 MAX_OPEN_REQUEST = 5
 
 
@@ -12,12 +12,37 @@ def process_client(cs):
     msg = cs.recv(2048).decode('utf-8')
     resp=msg
     print('Message from the client: {}'.format(msg))
+    return msg
 
 
+def ping(msg):
+    resp=''
     if msg == '' + '\n':
         resp= 'ALIVE'
-
     return resp
+
+
+def seqcheck(seq):
+    check = 'ACGT'
+    for i in seq:
+        if i not in check:
+            resp = 'ERROR'
+        else:
+            resp = 'OK'
+    return resp
+
+def operationcheck(data):
+    check= ['complement', 'len', 'reverse', 'countA','countC','countG','countT', 'percA','percC','percG','percT',]
+    resp=None
+    try:
+        operations=data[1:]
+        for i in operations:
+            if i not in check:
+                resp='ERROR'
+    except:
+        resp='ERROR'
+    return resp
+
 
 def operations(seq, operation):
     i = Seq(seq)
@@ -31,17 +56,17 @@ def operations(seq, operation):
                   'percA': i.perc('a'),
                   'percC': i.perc('c'),
                   'percT': i.perc('t'),
-                  'percG': i.perc('g'),}
+                  'percG': i.perc('g')}
 
     return operations[operation]
 
-def seq_check(seq):
-    for i in seq:
-        if i not in check:
-            return 'ERROR'
 
+# Create a socket for connecting to the clients
+serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+serversocket.bind((IP, PORT))
 
+serversocket.listen(MAX_OPEN_REQUEST)
 
 print('Socket ready: {}'.format(serversocket))
 
@@ -52,21 +77,43 @@ while True:
     (clientsocket, addres) = serversocket.accept()
     print('Atetending client: {}'.format(addres))
 
-    resp=process_client(clientsocket)
-    print(resp)
-    if resp!= 'ALIVE':
-        data= resp.split('\n')
-        print(data)
-        seq=data[0]
-        resp= seq_check(seq)
-        print(resp)
-        operation= data[1]
-        try:
-            resp=operations(seq, operation)
-            resp=str(resp)
-        except:
-            pass
+    msg=process_client(clientsocket)
+    response= []
 
-    clientsocket.send(str.encode(resp))
+    # checking if the user is just checking if the server is alive
+    if ping(msg)=='ALIVE':
+        clientsocket.send(str.encode(ping(msg)))
+
+    # process the message of the client
+    else:
+        msg=msg.rstrip(' \n')
+        data= msg.split('\n')
+        seq=data[0]
+        seq=seq.upper()
+
+        # Checking if the request is alright
+
+        if seqcheck(seq)== 'ERROR':
+            print('errooooooooooooooor')
+            clientsocket.send(str.encode('ERROR'))
+        elif operationcheck(data)=='ERROR':
+            print('errprrapesrjp 2222222')
+            clientsocket.send(str.encode('ERROR'))
+        else:
+            response.append('OK')
+            operations=data[1:]
+            print(operations[0])
+            print(seq)
+            i=(operations(seq, operations[0]))
+
+
+            for i, elem in enumerate(response):
+                response[i]=str(elem)
+
+            response='\n'.join(response)
+            response=str(response)
+            clientsocket.send(str.encode(response))
+
+
     # close the socket
     clientsocket.close()

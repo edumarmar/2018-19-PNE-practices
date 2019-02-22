@@ -48,18 +48,30 @@ class Seq:
         return round(100.0 * counter/tl, 1)
 
 
-seq= 'ACGAhTAC'
 
 
 
-print(seq_check(seq))
 
-def seq_check(seq):
-    seq=seq.upper()
-    check= 'ACGT'
-    respseq=seq
-    for i in seq:
-        if i not in check:
-            return 'ERROR'
+def operations(seq, operation):
+    i = Seq(seq)
+    operations = {'len': i.len(),
+                  'complement': i.complement(),
+                  'reverse': i.reverse(),
+                  'countA': i.count('a'),
+                  'countT': i.count('t'),
+                  'countG': i.count('g'),
+                  'countC': i.count('c'),
+                  'percA': i.perc('a'),
+                  'percC': i.perc('c'),
+                  'percT': i.perc('t'),
+                  'percG': i.perc('g')}
 
-    return seq
+    return operations[operation]
+
+
+
+seq= 'ACGT'
+operation='countA'
+
+i=operations(seq, operation)
+print(i)

@@ -2,8 +2,8 @@ import socket
 
 
 # SERVER IP, PORT
-IP = "212.128.253.108"
-PORT = 9001
+IP = "212.128.253.105"
+PORT = 9000
 
 while True:
     msgs=[]
