@@ -47,32 +47,3 @@ class Seq:
         tl = len(seq)
         return round(100.0 * counter/tl, 1)
 
-
-
-
-
-
-def caca():
-    if resp=='ERROR' or resp=='ALIVE':
-        clientsocket.send(str.encode(resp))
-    else:
-        response= '\nOK'
-        i = Seq(seq)
-        ops = {'len': i.len(),
-                      'complement': i.complement(),
-                      'reverse': i.reverse(),
-                      'countA': i.count('a'),
-                      'countT': i.count('t'),
-                      'countG': i.count('g'),
-                      'countC': i.count('c'),
-                      'percA': i.perc('a'),
-                      'percC': i.perc('c'),
-                      'percT': i.perc('t'),
-                      'percG': i.perc('g')}
-
-        for operation in operations:
-            data= ops[operation]
-            data=str(data)
-            response+='\n'+ data
-
-        clientsocket.send(str.encode(response))
