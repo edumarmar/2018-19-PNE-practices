@@ -52,26 +52,27 @@ class Seq:
 
 
 
-def operations(seq, operation):
-    i = Seq(seq)
-    operations = {'len': i.len(),
-                  'complement': i.complement(),
-                  'reverse': i.reverse(),
-                  'countA': i.count('a'),
-                  'countT': i.count('t'),
-                  'countG': i.count('g'),
-                  'countC': i.count('c'),
-                  'percA': i.perc('a'),
-                  'percC': i.perc('c'),
-                  'percT': i.perc('t'),
-                  'percG': i.perc('g')}
+def caca():
+    if resp=='ERROR' or resp=='ALIVE':
+        clientsocket.send(str.encode(resp))
+    else:
+        response= '\nOK'
+        i = Seq(seq)
+        ops = {'len': i.len(),
+                      'complement': i.complement(),
+                      'reverse': i.reverse(),
+                      'countA': i.count('a'),
+                      'countT': i.count('t'),
+                      'countG': i.count('g'),
+                      'countC': i.count('c'),
+                      'percA': i.perc('a'),
+                      'percC': i.perc('c'),
+                      'percT': i.perc('t'),
+                      'percG': i.perc('g')}
 
-    return operations[operation]
+        for operation in operations:
+            data= ops[operation]
+            data=str(data)
+            response+='\n'+ data
 
-
-
-seq= 'ACGT'
-operation='countA'
-
-i=operations(seq, operation)
-print(i)
+        clientsocket.send(str.encode(response))
