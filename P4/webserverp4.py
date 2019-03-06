@@ -2,7 +2,7 @@ import socket
 import termcolor
 
 IP = "212.128.253.110"
-PORT = 8081
+PORT = 8080
 MAX_OPEN_REQUESTS = 5
 
 
@@ -31,11 +31,8 @@ def process_client(cs, response_msg=None):
     else:
         file='error.html'
 
-
-    with open(file, 'r') as i:
-        content = ''
-        for rows in i:
-            content += rows
+    with open(file, 'r') as f:
+        content = f.read()
 
     status_line = 'HTTP/1.1 200 OK\r\n'
     header = 'Content-Type: text/html\r\n'
