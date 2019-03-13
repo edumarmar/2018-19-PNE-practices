@@ -21,14 +21,18 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
 
         # opening and reading the form1.html file
-        f = open("form_exercise1.html", 'r')
-        content = f.read()
+        if self.path == '/' or self.path == '/echo':
+            f = open("form_exercise1.html", 'r')
+            content = f.read()
 
-        print('Path: ' + self.path)
+            print('Path: ' + self.path)
 
-        path = self.path
+            path = self.path
 
-        i = path.find('=')
+            i = path.find('=')
+        else:
+            f = open("error.html", 'r')
+            content = f.read()
 
         if i != -1:
             msg = path[i + 1:]

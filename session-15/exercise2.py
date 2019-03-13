@@ -3,7 +3,7 @@ import socketserver
 import termcolor
 
 # Define the Server's port
-PORT = 8008
+PORT = 8001
 
 # Class with our Handler. It is a called derived from BaseHTTPRequestHandler
 # It means that our class inheritates all his methods and properties
@@ -19,31 +19,35 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
         i=path.find('=')
 
-        f = open("form_exercise2.html", 'r')
-        content = f.read()
 
-        print('Path: ' + self.path)
+        if self.path== '/' or self.path=='/echo':
+            f = open("form_exercise2.html", 'r')
+            content = f.read()
 
-        path = self.path
+            print('Path: ' + self.path)
 
-        i = path.find('=')
+            path = self.path
+
+            i = path.find('=')
+
+        else:
+            f = open("error.html", 'r')
+            content = f.read()
+
 
         if i != -1:
 
-            if path.find('&')!=-1:
-                i2=path.find('&')
+            if path.find('&') != -1:
+                i2 = path.find('&')
                 msg = path[i + 1: i2]
-                msg=msg.upper()
-                msg=msg.replace('+', ' ')
+                msg = msg.upper()
+                msg = msg.replace('+', ' ')
             else:
-                msg=path[i+1:]
+                msg = path[i + 1:]
 
             f = open('echohtml.html', 'r')
             content = f.read()
-            content=content.replace('msg', msg)
-
-
-
+            content = content.replace('msg', msg)
 
         # generating the response message
         self.send_response(200)
