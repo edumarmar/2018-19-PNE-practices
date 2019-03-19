@@ -1,0 +1,18 @@
+{"person1": [{"firstname": "Troll",
+  "lastname" : "Face",
+  "age": "20",
+  "phonenumber" : [{"number":"111", "type":"home"},
+    {"number": "222", "type": "personal"}]}],
+
+  "person2":[{"firstname": "Troll2",
+  "lastname" : "Face2",
+  "age": "40",
+  "phonenumber" : [{"number":"1asdf1", "type":"home"},
+    {"number": "2asd2", "type": "personal"}]}],
+
+  "person3":[{"firstname": "asdg",
+  "lastname" : "adsface",
+  "age": "60",
+  "phonenumber" : [{"number":"111", "type":"home"},
+    {"number": "222", "type": "personal"}]}]
+}
