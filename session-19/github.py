@@ -2,11 +2,12 @@
 
 import http.client
 import json
+import sys
 
 # -- API information
 HOSTNAME = "api.github.com"
 ENDPOINT = "/users/"
-GITHUB_ID = "Obijuan"
+GITHUB_ID = input('Insert the github username here: ')
 METHOD = "GET"
 
 # -- Here we can define special headers if needed
@@ -40,16 +41,65 @@ conn.close()
 # print(text_json)
 
 # -- Generate the object from the json file
-user = json.loads(text_json)
+try:
+    user = json.loads(text_json)
+except:
+    print('sorry that username is not in our data base')
+    sys.exit(0)
+
+
+### repoooooooooooooooos
+
+conn = http.client.HTTPSConnection(HOSTNAME)
+
+conn.request(METHOD, ENDPOINT + GITHUB_ID + '/repos', None, headers)
+
+r1 = conn.getresponse()
+
+print()
+print("Response received: ", end='')
+print(r1.status, r1.reason)
+
+text_json = r1.read().decode("utf-8")
+conn.close()
+
+repos= json.loads(text_json)
+
+
+
+# comiiiiiits
+
+ENDPOINT= '/repos/'
+conn = http.client.HTTPSConnection(HOSTNAME)
+
+conn.request(METHOD, ENDPOINT + GITHUB_ID + '/2018-19-PNE-practices/commits', None, headers)
+
+r1 = conn.getresponse()
+
+print()
+print("Response received: ", end='')
+print(r1.status, r1.reason)
+
+text_json = r1.read().decode("utf-8")
+conn.close()
+
+commits= json.loads(text_json)
+ncomm= len(commits)
+
 
 # -- Get some data
 login = user['login']
 name = user['name']
-bio = user['bio']
 nrepos = user['public_repos']
+listrepos=[]
+
+for i in repos:
+    listrepos.append(i['name'])
+
 
 print()
 print("User: {}".format(login))
 print("Name: {}".format(name))
 print("Repos: {}".format(nrepos))
-print("Bio: \n{}".format(bio))
+print('List of repos: ', listrepos)
+print('Number of commits in 2018-2019-PNE: ', ncomm)
